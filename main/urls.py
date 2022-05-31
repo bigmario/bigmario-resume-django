@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import hello
+from . import views
+
+app_name = "main"
 
 urlpatterns = [
-    path("", hello, name="hello"),
+    path("", views.hello, name="hello"),
 ]

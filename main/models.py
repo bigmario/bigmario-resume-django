@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
@@ -11,7 +12,9 @@ class Skill(models.Model):
 
     name = models.CharField(max_length=20, blank=True, null=True)
     score = models.IntegerField(default=80, blank=True, null=True)
-    image = models.FileField(blank=True, null=True, upload_to="mediafiles/skills")
+    image = models.FileField(
+        blank=True, null=True, upload_to=f"{os.getcwd()}/mediafiles/skills"
+    )
     is_key_skill = models.BooleanField(default=False)
 
     def __str__(self):
@@ -24,7 +27,9 @@ class UserProfile(models.Model):
         verbose_name = "User Profile"
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True, null=True, upload_to="mediafiles/avatar")
+    avatar = models.ImageField(
+        blank=True, null=True, upload_to=f"{os.getcwd()}/mediafiles/avatar"
+    )
     title = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, blank=True)
@@ -56,7 +61,7 @@ class Testimonial(models.Model):
         ordering = ["name"]
 
     thumbnail = models.ImageField(
-        blank=True, null=True, upload_to="mediafiles/testimonials"
+        blank=True, null=True, upload_to=f"{os.getcwd()}/mediafiles/testimonials"
     )
     name = models.CharField(max_length=200, blank=True, null=True)
     role = models.CharField(max_length=200, blank=True, null=True)
@@ -73,7 +78,9 @@ class Media(models.Model):
         verbose_name = "Media"
         ordering = ["name"]
 
-    image = models.ImageField(blank=True, null=True, upload_to="mediafiles/media")
+    image = models.ImageField(
+        blank=True, null=True, upload_to=f"{os.getcwd()}/mediafiles/media"
+    )
     url = models.URLField(blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     is_image = models.BooleanField(default=True)
@@ -97,7 +104,9 @@ class Portfolio(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
-    image = models.ImageField(blank=True, null=True, upload_to="mediafiles/portfolio")
+    image = models.ImageField(
+        blank=True, null=True, upload_to=f"{os.getcwd()}/mediafiles/portfolio"
+    )
     slug = models.SlugField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
@@ -125,7 +134,9 @@ class Blog(models.Model):
     description = models.CharField(max_length=500, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
     slug = models.SlugField(null=True, blank=True)
-    image = models.ImageField(blank=True, null=True, upload_to="mediafiles/blog")
+    image = models.ImageField(
+        blank=True, null=True, upload_to=f"{os.getcwd()}/mediafiles/blog"
+    )
     is_active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):

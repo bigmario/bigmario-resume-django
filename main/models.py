@@ -24,11 +24,11 @@ class UserProfile(models.Model):
         verbose_name = "User Profile"
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True, null=True, upload_to="avatar")
+    avatar = models.ImageField(blank=True, null=True, upload_to="mediafiles/avatar")
     title = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, blank=True)
-    cv = models.FileField(blank=True, null=True, upload_to="cv")
+    cv = models.FileField(blank=True, null=True, upload_to="mediafiles/cv")
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -55,7 +55,9 @@ class Testimonial(models.Model):
         verbose_name = "Testimonial"
         ordering = ["name"]
 
-    thumbnail = models.ImageField(blank=True, null=True, upload_to="testimonials")
+    thumbnail = models.ImageField(
+        blank=True, null=True, upload_to="mediafiles/testimonials"
+    )
     name = models.CharField(max_length=200, blank=True, null=True)
     role = models.CharField(max_length=200, blank=True, null=True)
     quote = models.CharField(max_length=500, blank=True, null=True)
@@ -71,7 +73,7 @@ class Media(models.Model):
         verbose_name = "Media"
         ordering = ["name"]
 
-    image = models.ImageField(blank=True, null=True, upload_to="media")
+    image = models.ImageField(blank=True, null=True, upload_to="mediafiles/media")
     url = models.URLField(blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     is_image = models.BooleanField(default=True)
@@ -95,7 +97,7 @@ class Portfolio(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
-    image = models.ImageField(blank=True, null=True, upload_to="portfolio")
+    image = models.ImageField(blank=True, null=True, upload_to="mediafiles/portfolio")
     slug = models.SlugField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
@@ -108,7 +110,7 @@ class Portfolio(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f"/portfolio/{self.slug}"
+        return f"mediafiles/portfolio/{self.slug}"
 
 
 class Blog(models.Model):
@@ -123,7 +125,7 @@ class Blog(models.Model):
     description = models.CharField(max_length=500, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
     slug = models.SlugField(null=True, blank=True)
-    image = models.ImageField(blank=True, null=True, upload_to="blog")
+    image = models.ImageField(blank=True, null=True, upload_to="mediafiles/blog")
     is_active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):

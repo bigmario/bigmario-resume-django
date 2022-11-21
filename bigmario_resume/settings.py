@@ -31,7 +31,7 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 CSRF_TRUSTED_ORIGINS = ["https://bigmario-resume.herokuapp.com"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "RENDER" not in os.environ
+DEBUG = False
 
 ALLOWED_HOSTS = []
 

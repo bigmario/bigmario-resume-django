@@ -135,12 +135,12 @@ USE_TZ = True
 STATIC_URL = "/static/"
 # STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "/media/"
+# MEDIA_URL = "/media/"
 
 # Following settings only make sense on production and may break development environments.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "media"),
+    # os.path.join(BASE_DIR, "media"),
     os.path.join(BASE_DIR, "mediafiles"),
 ]
 

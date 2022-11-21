@@ -156,6 +156,6 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-import django_on_heroku
+# import django_on_heroku
 
-django_on_heroku.settings(locals())
+# django_on_heroku.settings(locals())

@@ -61,7 +61,7 @@ class Testimonial(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     role = models.CharField(max_length=200, blank=True, null=True)
     quote = models.CharField(max_length=500, blank=True, null=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -126,7 +126,7 @@ class Blog(models.Model):
     body = RichTextField(blank=True, null=True)
     slug = models.SlugField(null=True, blank=True)
     image = models.ImageField(blank=True, null=True, upload_to="mediafiles/blog")
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.id:
